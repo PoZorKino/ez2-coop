@@ -1,0 +1,87 @@
+ez2_c2_2
+{
+//spawn coop_manager entity
+	create
+	{
+		coop_manager
+		{
+			"classname" "coop_manager"
+			"origin" "-40 756 566"
+			"targetname" "coop_manager1"
+			"spawnflags" "0"
+			"angles" "0 0 0"
+		}
+	}
+	create
+	{
+		game_player_equip
+		{
+			"classname" "game_player_equip"
+			"origin" "-40 756 565"
+			"angles" "0 0 0"
+			"item_suit" "1"
+			"weapon_pulsepistol" "1"
+			"weapon_ar2" "1"
+			"weapon_smg1" "1"
+			"weapon_frag" "2"
+			"weapon_slam" "2"
+			"weapon_smg2" "1"
+		}
+	}
+	create
+	{
+		info_player_start
+		{
+			"classname" "info_player_start"
+			"origin" "811.906250 -125.812508 1810.873413"
+			"targetname" "checkpoint1"
+			"angles" "0 90 0"
+		}
+	}
+	edit
+	{
+		#find_by_keyfield "hammerid 71179"
+		values
+		{
+			"OnPressed" "coop_manager1,MoveSpawn,checkpoint1,0,-1"
+		}
+	}
+	create
+	{
+		info_player_start
+		{
+			"classname" "info_player_start"
+			"origin" "-52.875042 2409.843750 1859.184814"
+			"targetname" "checkpoint2"
+			"angles" "0 90 0"
+		}
+	}
+	edit
+	{
+		#find_by_keyfield "hammerid 91290"
+		values
+		{
+			"OnTrigger" "coop_manager1,MoveSpawn,checkpoint2,0,-1"
+		}
+	}
+	create
+	{
+		point_teleport
+		{
+			"classname" "point_teleport"
+			"origin" "811.906250 -125.812508 1810.873413"
+			"targetname" "coopfix_teleport1"
+			"target" "!player"
+			"spawnflags" "0"
+			"angles" "0 0 0"
+		}
+	}
+	edit
+	{
+		#find_by_keyfield "hammerid 5710"
+		values
+		{
+			"OnTrigger" "coopfix_teleport1,Teleport,,0,-1"
+		}
+	}
+}

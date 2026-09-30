@@ -95,4 +95,12 @@ sp/src/vgui2/*.dll
 sp/src/vgui2/*.pdb
 
 # Build support files
-sp/src/devtools/gcc9+support.o
+sp/src/devtools/gcc9+support.o/dist/
+/dist-old/
+/stage/
+/shots/
+/ez2-coop.zip
+/build.out
+*.build.log
+/sp/game/mod_ez2/
+/bridge/bridge.log

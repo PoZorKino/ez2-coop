@@ -1,0 +1,19 @@
+services:
+  ez2-coop-relay:
+    image: python:3.12-alpine
+    container_name: ez2-coop-relay
+    restart: unless-stopped
+    working_dir: /app
+    command: ["python", "-u", "relay.py"]
+    environment:
+      - CONTROL_PORT=27600
+      - PORT_FIRST=27601
+      - PORT_LAST=27616
+    volumes:
+      - ./relay.py:/app/relay.py:ro
+    ports:
+      - "27600-27616:27600-27616/udp"
+    mem_limit: 128m
+    logging:
+      driver: json-file
+      options: { max-size: "5m", max-file: "2" }

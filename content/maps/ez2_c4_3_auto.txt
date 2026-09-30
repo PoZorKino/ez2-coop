@@ -1,0 +1,37 @@
+ez2_c4_3
+{
+//spawn coop_manager entity
+	create
+	{
+		coop_manager
+		{
+			"classname" "coop_manager"
+			"origin" "-40 756 566"
+			"targetname" "coop_manager1"
+			"spawnflags" "0"
+			"angles" "0 0 0"
+		}
+	}
+//no backtracking
+	delete {#find_by_keyfield "hammerid 37047"}
+//default equipment (first start, death)
+	create
+	{
+		game_player_equip
+		{
+			"classname" "game_player_equip"
+			"origin" "-40 756 565"
+			"angles" "0 0 0"
+			"item_suit" "1"
+			"weapon_pulsepistol" "1"
+			"weapon_ar2" "1"
+			"weapon_smg1" "1"
+			"weapon_hopwire" "2"
+			"weapon_shotgun" "1"
+			"weapon_smg2" "1"
+			"weapon_357" "1"
+			"weapon_frag" "2"
+			"weapon_slam" "2"
+		}
+	}
+}

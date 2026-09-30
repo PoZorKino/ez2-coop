@@ -1,0 +1,52 @@
+ez2_c0_1
+{
+//spawn coop_manager entity
+	create
+	{
+		coop_manager
+		{
+			"classname" "coop_manager"
+			"origin" "-40 756 566"
+			"targetname" "coop_manager1"
+			"spawnflags" "0"
+			"angles" "0 0 0"
+		}
+	}
+//default equipment (first start, death)
+	create
+	{
+		game_player_equip
+		{
+			"classname" "game_player_equip"
+			"origin" "-40 756 565"
+			"angles" "0 0 0"
+		}
+	}
+//create servercommand entity for levelchange
+	create
+	{
+		point_servercommand
+		{
+			"classname" "point_servercommand"
+			"origin" "-40 750 569"
+			"targetname" "server_command"
+		}
+	}
+//changelevel when final sequence ends
+	edit
+	{
+		titles_sequence ""
+		values
+		{
+			"OnCompletion" "server_command,Command,changelevel ez2_c1_1,13,-1"			
+		}
+	}
+	edit
+	{
+		titles_sequence ""
+		values
+		{
+			"OnCompletion" "server_command,Command,changelevel ez2_c1_1,13,-1"			
+		}
+	}
+}

@@ -1,0 +1,46 @@
+ez2_c3_3
+{
+//spawn coop_manager entity
+	create
+	{
+		coop_manager
+		{
+			"classname" "coop_manager"
+			"origin" "-40 756 566"
+			"targetname" "coop_manager1"
+			"spawnflags" "0"
+			"angles" "0 0 0"
+		}
+	}
+//no backtracking
+	delete {#find_by_keyfield "hammerid 325063"}
+//add pulsepistol to respawn weapons once it is picked up
+	edit
+	{
+		#find_by_keyfield "hammerid 21457"	
+		values
+		{
+			"OnPlayerPickup" "coop_manager1,AddRespawnWeapons,weapon_pulsepistol 1,0,-1"				
+		}
+	}
+//add 357 to respawn weapons after cage lock is broken
+	edit
+	{
+		#find_by_keyfield "hammerid 25559"	
+		values
+		{
+			"OnTakeDamage" "coop_manager1,AddRespawnWeapons,weapon_357 2,0,-1"				
+		}
+	}
+//default equipment (first start, death)
+	create
+	{
+		game_player_equip
+		{
+			"classname" "game_player_equip"
+			"origin" "-40 756 565"
+			"angles" "0 0 0"
+			"item_suit" "1"
+		}
+	}
+}
