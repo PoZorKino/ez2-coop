@@ -1,1 +1,1 @@
-1.0.0 (EZ2 1.10.10, bridge proto 1)
+1.0.1 (EZ2 1.10.10, bridge proto 1)
