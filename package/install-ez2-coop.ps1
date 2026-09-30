@@ -24,6 +24,24 @@ function Find-Ez2 {
 }
 
 Write-Host "`n== Entropy : Zero 2 Co-op installer ==`n" -ForegroundColor Cyan
+
+# Uninstall:  $ez2coopUninstall=1; irm https://tool.dexx.moe/install-ez2-coop.ps1 | iex
+if ($ez2coopUninstall) {
+    $sm = (Get-ItemProperty 'HKCU:\Software\Valve\Steam' -ErrorAction SilentlyContinue).SourceModInstallPath
+    $mod = if ($sm) { Join-Path $sm 'ez2coop' } else { $null }
+    if ($mod -and (Test-Path $mod)) {
+        $item = Get-Item $mod -Force
+        if ($item.Attributes -band [IO.FileAttributes]::ReparsePoint) { cmd /c rmdir "$mod" | Out-Null }
+        else { Remove-Item $mod -Recurse -Force }
+        Write-Host "Removed $mod"
+    } else { Write-Host 'EZ2 Co-op is not installed.' }
+    $desk = [Environment]::GetFolderPath('Desktop')
+    foreach ($n in 'EZ2 Co-op - Host', 'EZ2 Co-op - Join') { Remove-Item (Join-Path $desk "$n.lnk") -ErrorAction SilentlyContinue }
+    Remove-Variable ez2coopUninstall -Scope Global -ErrorAction SilentlyContinue
+    Write-Host 'EZ2 Co-op uninstalled. Entropy : Zero 2 itself was not touched.' -ForegroundColor Green
+    return
+}
+
 $ez2 = Find-Ez2
 if (-not $ez2) {
     $ez2 = Read-Host 'Could not find Entropy : Zero 2. Paste its folder (...\steamapps\common\EntropyZero2)'
